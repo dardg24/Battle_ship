@@ -1,5 +1,5 @@
 from funciones import *
-from clases import Tablero, Barco
+
 
 
 def main():

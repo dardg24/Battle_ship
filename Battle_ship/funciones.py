@@ -1,4 +1,4 @@
-import numpy as np
+from clases import *
 import random
 import time 
 
@@ -41,79 +41,6 @@ def mostrar_instrucciones():
     print ("\t8. The game continues until all of one player's ships are sunk.")
     print ("\t9. The first player to sink all of their opponent's ships wins the game.")
 
-# Array de 10x10
-def crear_tablero(tamaño:tuple):
-    """ Crear un tablero.
-    
-    Esta función crea un array de numpy del tamaño especificado 
-    y lo llena con strings de espacios vacíos.
-    
-    Args:
-        tamaño (tuple): Una tupla con las dimensiones (x, y) del tablero.
-    
-    Returns:
-        np.array: Un array de numpy lleno de strings de espacios vacíos.
-    """
-    return np.full(tamaño, " ")
-
-def orientacion_aleatoria():
-    """ Genera una orientación aleatoria para los barcos.
-    
-    Returns:
-        str: Una de las orientaciones: N, S, E, O.
-    """
-    return random.choice(['N', 'S', 'E', 'O'])
-
-def es_posicion_valida(tablero:object, x:int, y:int):
-    """ Verificar si la posición (x, y) es válida en el tablero.
-    
-    Args:
-        tablero (obj): El tablero donde se verifica.
-        x (int): Coordenada en el eje X.
-        y (int): Coordenada en el eje Y.
-    
-    Returns:
-        bool: True si la posición es válida, False en caso contrario.
-    """
-    return 0 <= x < tablero.dimensiones[0] and 0 <= y < tablero.dimensiones[1]
-    
-def verificar_posicion_barco(tablero, x, y, orient, barco):
-        """
-    Verifica si la posición y orientación especificadas para un barco son válidas en el tablero.
-
-    Parámetros:
-    - tablero (TipoTablero): Objeto que representa el tablero del juego.
-    - x (int): Coordenada en el eje x donde se desea ubicar el barco.
-    - y (int): Coordenada en el eje y donde se desea ubicar el barco.
-    - orient (str): Orientación del barco. Valores posibles: 'N' (Norte), 'S' (Sur), 'E' (Este), 'O' (Oeste).
-    - barco (TipoBarco): Objeto que representa el barco que se desea ubicar.
-
-    Retorna:
-    - bool: True si es posible ubicar el barco en la posición y orientación especificadas, False en caso contrario.
-
-    Ejemplo de uso:
-    - tablero = Tablero(10, 10)
-    - barco = Barco(3)
-    - verificar_posicion_barco(tablero, 5, 5, 'N', barco)
-    True
-    """
-        for _ in range(barco.eslora):
-            if x < 0 or y < 0:
-                return False
-            if not es_posicion_valida(tablero, x, y):
-                return False
-            if tablero.tablero_barcos[x][y] == 'B':
-                return False
-            if orient == 'N':
-                x -= 1
-            elif orient == 'S':
-                x += 1
-            elif orient == 'E':
-                y += 1
-            elif orient == 'O':
-                y -= 1
-        return True
-
 # Agrega los barcos del jugador en su diccionario
 def agregar_diccionario_barcos(BARCOS_DICT:dict, tablero:object):
     """Agrega los barcos del jugador en su diccionario.
@@ -132,15 +59,16 @@ def agregar_barcos_tablero(tablero):
     Args:
         tablero (object): Tablero donde agregar los barcos.
     """
-    todos_colocados = True # True, esto indica que todos los barcos han sido colocados con éxito en el tablero.
-    for clave, barco in tablero.barcos.items(): # Aquí, la función itera sobre el diccionario barcos del objeto tablero. Clave = "Barco_4": barco = el objeto asociado a esa clave.
-        tablero.colocar_barco(clave, barco) # Se llama al método colocar_barco del objeto tablero con la clave y el barco actual. 
-        if not tablero.posiciones.get(clave): # Verifica si el barco (identificado por su clave) ha sido colocado exitosamente en el tablero.
-            todos_colocados = False # si esa clave no tiene posiciones asociadas en el tablero), entonces todos_colocados = False
+    todos_colocados = True
+    for clave, barco in tablero.barcos.items():
+        tablero.colocar_barco(clave, barco) 
+        if not tablero.posiciones.get(clave):
+            todos_colocados = False 
     if todos_colocados:
         print(f"Todos los barcos del jugador {tablero.nombre_jugador} fueron colocados con éxito.")
     else:
         print(f"No se pudo colocar todos los barcos del jugador {tablero.nombre_jugador}.")
+
 
 # Solicitar las coordenadas hasta que sean número válidos
 def solicitar_coordenadas(tipo_de_juego):
