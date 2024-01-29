@@ -1,7 +1,8 @@
 
 # Battleship
 
-![imagen](Battle_ship/img/battleship.png)
+<img src="Battle_ship/img/battleship.png" width="200">
+
 
 
 ## Description
