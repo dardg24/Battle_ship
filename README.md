@@ -1,7 +1,7 @@
 
 # Battleship
 
-<img src="Battle_ship/img/battleship.png" width="200">
+<img src="Battle_ship/img/battleship.png" width="600">
 
 
 
