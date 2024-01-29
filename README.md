@@ -43,7 +43,7 @@ This project is licensed under the MIT License.
 
 # Hundir la Flota
 
-![imagen](Battle_ship\img\battleship.png)
+![imagen](Battle_ship/img/battleship.png)
 
 ## Descripción
 Hundir la Flota es una implementación en Python del clásico juego de estrategia naval. En este juego, el objetivo es hundir todos los barcos del oponente antes de que hundan los tuyos, jugando contra una inteligencia artificial.
