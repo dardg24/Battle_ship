@@ -1,7 +1,7 @@
 
 # Battleship
 
-![imagen](Battle_ship\img\battleship.png)
+![imagen](Battle_ship/img/battleship.png)
 
 
 ## Description
